@@ -12,6 +12,7 @@
 						@if ($post->created_at != $post->updated_at)
 							<small>edited: <abbr title="{{$post->updated_at}}">{{$post->updated_at->diffForHumans()}}</abbr></small>
 						@endif
+						<small>posted by: {{$post->user->name}}</small>
 					</div>
 				@endforeach
 				{{$posts->links()}}

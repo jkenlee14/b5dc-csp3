@@ -33,6 +33,7 @@ main {
 }
 .backbtn{
     margin-top: 15px;
+    margin-bottom: 15px!important;
 }
 .blogpost{
     border: 1px solid black;

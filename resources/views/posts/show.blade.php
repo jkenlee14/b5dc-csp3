@@ -14,33 +14,36 @@
 			<br><br>
 			{!! $post->body !!}
 			<hr>
-			<a class="btn btn-default pull-left" href="/posts/{{$post->id}}/edit">Edit</a>
-			<!-- Trigger the modal with a button -->
-			<button type="button" class="btn btn-danger pull-left" data-toggle="modal" data-target="#DeletePost">Delete</button>
-			<!-- Modal -->
-			<div id="DeletePost" class="modal fade" role="dialog">
-			  <div class="modal-dialog">
+			@if (!Auth::guest())
+				@if (Auth::user()->id == $post->user_id)
+					<a class="btn btn-default pull-left" href="/posts/{{$post->id}}/edit">Edit</a>
+					<!-- Trigger the modal with a button -->
+					<button type="button" class="btn btn-danger pull-left" data-toggle="modal" data-target="#DeletePost">Delete</button>
+					<!-- Modal -->
+					<div id="DeletePost" class="modal fade" role="dialog">
+					  <div class="modal-dialog">
 
-			    <!-- Modal content-->
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <button type="button" class="close" data-dismiss="modal">&times;</button>
-			        <h4 class="modal-title">Delete Post</h4>
-			      </div>
-			      <div class="modal-body">
-			      	<p>Are you sure you want to delete this post?</p>
-			      </div>
-			      <div class="modal-footer">
-			      	{!!Form::open(['action'=>['PostsController@destroy', $post->id], 'method' => 'POST', 'class' => 'pull-left'])!!}
-						{{Form::hidden('_method', 'DELETE')}}
-						{{Form::submit('Delete', ['class'=>'btn btn-danger'])}}
-					{!!Form::close()!!}
-			        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-			      </div>
-			    </div>
-
-			  </div>
-			</div>
+					    <!-- Modal content-->
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal">&times;</button>
+					        <h4 class="modal-title">Delete Post</h4>
+					      </div>
+					      <div class="modal-body">
+					      	<p>Are you sure you want to delete this post?</p>
+					      </div>
+					      <div class="modal-footer">
+					      	{!!Form::open(['action'=>['PostsController@destroy', $post->id], 'method' => 'POST', 'class' => 'pull-left'])!!}
+								{{Form::hidden('_method', 'DELETE')}}
+								{{Form::submit('Delete', ['class'=>'btn btn-danger'])}}
+							{!!Form::close()!!}
+					        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+				@endif
+			@endif
 			<div id="disqus_thread"></div>
 			<script>
 

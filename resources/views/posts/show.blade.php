@@ -12,7 +12,11 @@
 			<br>
 			<div class="fb-like" data-href="{{url()->current()}}" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
 			<br><br>
+			<img class="image-responsive postimagefull" src="/storage/cover_images/{{$post->cover_image}}">
+			<br><br>
 			{!! $post->body !!}
+			<hr>
+			<small>Posted in: {{$post->category->name}}</small>
 			<hr>
 			@if (!Auth::guest())
 				@if (Auth::user()->id == $post->user_id)
@@ -46,7 +50,7 @@
 			@endif
 			<div id="disqus_thread"></div>
 			<script>
-
+				
 			/**
 			*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
 			*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/

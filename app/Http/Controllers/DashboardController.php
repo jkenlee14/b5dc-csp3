@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 Use App\User;
+Use App\Category;
 
 class DashboardController extends Controller
 {
@@ -24,8 +25,22 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        $categories = Category::all();
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
-        return view('dashboard')->with('posts', $user->posts);
+        return view('dashboard')->with('posts', $user->posts)->with('categories', $categories);
+    }
+
+    public function storeCategory(Request $request)
+    {
+        $this->validate($request, [
+            'categoryname' => 'required'
+        ]);
+
+        $category = new Category;
+        $category->name = $request->input('categoryname');
+        $category->save();
+
+        return redirect('/dashboard')->with('success', 'Category added!');
     }
 }

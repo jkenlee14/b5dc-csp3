@@ -58,11 +58,15 @@
             </script>
     <script type="text/javascript" src="{{ asset('js/jquery-1.10.2.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
-
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.7.0/jquery.matchHeight-min.js"><script>
     <script type="text/javascript">
     $().ready(function(){
         $('[rel="tooltip"]').tooltip();
 
+    });
+
+     $(function() {
+        $('.spacer').matchHeight();
     });
 
     function rotateCard(btn){

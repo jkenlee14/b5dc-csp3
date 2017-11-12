@@ -7,12 +7,19 @@
 			@if(count($posts)>0)
 				@foreach($posts as $post)
 					<div class="well">
-						<h3><a href="/posts/{{$post->id}}">{{$post->title}}</a></h3>
-						<small>posted: <abbr title="{{$post->created_at}}">{{$post->created_at->diffForHumans()}}</abbr></small>
-						@if ($post->created_at != $post->updated_at)
-							<small>edited: <abbr title="{{$post->updated_at}}">{{$post->updated_at->diffForHumans()}}</abbr></small>
-						@endif
-						<small>posted by: {{$post->user->name}}</small>
+						<div class="row">
+							<div class="col-md-4">
+								<img class="img-responsive postimage" src="/storage/cover_images/{{$post->cover_image}}">
+							</div>
+							<div class="col-md-8">
+								<h3><a href="/posts/{{$post->id}}">{{$post->title}}</a></h3>
+								<small>posted: <abbr title="{{$post->created_at}}">{{$post->created_at->diffForHumans()}}</abbr></small>
+								@if ($post->created_at != $post->updated_at)
+									<small>edited: <abbr title="{{$post->updated_at}}">{{$post->updated_at->diffForHumans()}}</abbr></small>
+								@endif
+								<small>posted by: {{$post->user->name}}</small>
+							</div>
+						</div>
 					</div>
 				@endforeach
 				{{$posts->links()}}

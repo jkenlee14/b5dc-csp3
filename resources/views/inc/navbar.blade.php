@@ -16,12 +16,19 @@
             <li class="dropdown">
             	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
             	<ul class="dropdown-menu" role="menu">
-            		<li><a href="#">Category 1</a></li>
+            		{{-- <li><a href="#">Category 1</a></li>
             		<li><a href="#">Category 2</a></li>
             		<li><a href="#">Category 3</a></li>
             		<li><a href="#">Category 4</a></li>
             		<li><a href="#">Category 5</a></li>
-            		<li><a href="#">Category 6</a></li>
+            		<li><a href="#">Category 6</a></li> --}}
+                    @if(count($categorylist)>0)
+                        @foreach($categorylist as $category)
+                            <li><a href="{{$category->id}}">{{$category->name}}</a></li>
+                        @endforeach
+                    @else
+                        <li>No Categories!</li>
+                    @endif
             	</ul>
             </li>
             <li><a href="/posts">Posts</a></li>
